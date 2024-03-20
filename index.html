@@ -6,220 +6,220 @@
   <title>Long-Short Term Memory model</title>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="https://unpkg.com/alpinejs-textarea-grow@latest/dist/grow.min.js"></script>
+  <script src="https://unpkg.com/@alpinejs/collapse@latest/dist/cdn.min.js"></script>
   <script src="//unpkg.com/alpinejs"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="./scripts.js/reactive.js"></script>
   <script src="./recurrent.js"></script>
   <script src="./lstm.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 </head>
 
-<body>
-  <div class="grid grid-cols-1 gap-4">
-    <div class="rounded-lg bg-gray-400">
-      <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-        <div class=" rounded-lg bg-gray-200">
-          <span class="material-symbols-rounded">
-            settings
-            </span>
-          <div x-data="{ activeTab: 'details' }"
-            x-init="activeTab = window.location.hash?.replace('#', '') || 'details'" class="space-y-2">
-            <ul class="flex gap-2">
-              <li>
-                <a @click="activeTab = 'details'" :class="{ 'text-indigo-600': activeTab === 'details' }"
-                  class="underline" href="#details">
-                  Architecture
-                </a>
-              </li>
+<body class="bg-gradient-to-r from-rose-100 to-teal-100">
 
-              <li>
-                <a @click="activeTab = 'specs'" :class="{ 'text-indigo-600': activeTab === 'specs' }" class="underline"
-                  href="#specs">
-                  Learning
-                </a>
-              </li>
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+    <div class="rounded-lg lg:col-span-2">
 
-              <li>
-                <a @click="activeTab = 'reviews'" :class="{ 'text-indigo-600': activeTab === 'reviews' }"
-                  class="underline" href="#reviews">
-                  Text Generation
-                </a>
-              </li>
-            </ul>
+      <div>
+        <span class="flex items-center mb-6">
+          <span class="pr-6 text-xl">Configuration</span>
+          <span class="h-px flex-1 bg-black"></span>
+      </div>
+      <div x-data="{ activeAccordion: 0 }" class="space-y-2 rounded-lg bg-zinc-200 p-8 shadow-lg m-6">
+        <div class="space-y-2">
+          <button @click="activeAccordion = activeAccordion === 0 ? false : 0"
+            :class="{ 'text-black': activeAccordion === 0 }" class="underline">
+            Network
+          </button>
 
-            <div>
-              <div x-cloak x-show="activeTab === 'details'">
-                <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
-                  <div class=" rounded-lg bg-gray-200">
-                    <div>
-                      <label for="letter_size"> Number of Network Layers</label>
-          
-                      <div class="flex items-center gap-1">
-                        <button x-on:click="data.params.hidden_sizes.pop()" type="button"
-                          class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                          &minus;
-                        </button>
-          
-                        <input x-bind:value="data.params.hidden_sizes.length" id="letter_size" type="number"
-                          class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-          
-                        <button x-on:click="data.params.hidden_sizes.push(20)" type="button"
-                          class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                          &plus;
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class=" rounded-lg bg-gray-200">
-                    <ul>
-                      <template x-for="layer in data.params.hidden_sizes">
-                        <div class="flex items-center gap-1">
-                          <label for="letter_size">Number of Neurons</label>
-                          <button x-on:click="layer--" type="button"
-                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                            &minus;
-                          </button>
-          
-                          <input x-bind:value="layer" id="letter_size" type="number"
-                            class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-          
-                          <button x-on:click="layer++" type="button"
-                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                            &plus;
-                          </button>
-                        </div>
-                      </template>
-          
-                    </ul>
-                  </div>
+          <div x-cloak x-collapse x-show="activeAccordion === 0">
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
+              <div class="h-32 rounded-lg">
+                <div>
+                  <label for="letter_size"> Number of Network Layers
+
+                    <div class="flex items-center gap-1 ">
+                      <button x-on:click="data.params.hidden_sizes.pop(); drawNetwork(); " type="button"
+                        class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+                        &minus;
+                      </button>
+
+
+                      <button x-on:click="data.params.hidden_sizes.push(data.params.neurons);drawNetwork();"
+                        type="button" class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+                        &plus;
+                      </button>
+                  </label>
                 </div>
+                <label for="letter_size">Number of Neurons
+                  <div class="flex items-center gap-1">
+                    <button x-on:click="data.params.neurons--;decrementHiddenSizes();" type="button"
+                      class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+                      &minus;
+                    </button>
+
+
+                    <button x-on:click="data.params.neurons++;addHiddenSize();" type="button"
+                      class="size-10 leading-10  transition hover:opacity-75">
+                      &plus;
+                    </button>
+                </label>
               </div>
-              <div x-cloak x-show="activeTab === 'specs'">
-                <div>
-                  <label for="learning_rate">Learning Rate</label>
-      
-                  <div class="flex items-center gap-1">
-                    <button x-on:click="data.params.learning_rate += -0.01" type="button"
-                      class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                      &minus;
-                    </button>
-      
-                    <input x-bind:value="data.params.learning_rate" id="learning_rate" type="number"
-                      class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-      
-                    <button x-on:click="data.params.learning_rate += 0.01" type="button"
-                      class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                      &plus;
-                    </button>
-                  </div>
-                </div>
-                <div>
-                  <label for="letter_size">Letter Size</label>
-      
-                  <div class="flex items-center gap-1">
-                    <button x-on:click="data.params.letter_size--" type="button"
-                      class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                      &minus;
-                    </button>
-      
-                    <input x-bind:value="data.params.letter_size" id="letter_size" type="number"
-                      class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-      
-                    <button x-on:click="data.params.letter_size++" type="button"
-                      class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                      &plus;
-                    </button>
-                  </div>
-                </div></div>
-              <div x-cloak x-show="activeTab === 'reviews'">
-                <div>
-                  <label for="learning_rate">Amount of Characters Generated</label>
-      
-                  <div class="flex items-center gap-1">
-                    <button x-on:click="data.generate.max_tokens--" type="button"
-                      class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                      &minus;
-                    </button>
-      
-                    <input x-bind:value="data.generate.max_tokens" id="learning_rate" type="number"
-                      class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-      
-                    <button x-on:click="data.generate.max_tokens++" type="button"
-                      class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                      &plus;
-                    </button>
-                  </div>
-                </div>
-                <div>
-                  <label for="letter_size">Temperature</label>
-      
-                  <div class="flex items-center gap-1">
-                    <button x-on:click="data.generate.temperature += -0.10" type="button"
-                      class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                      &minus;
-                    </button>
-      
-                    <input x-bind:value="data.generate.temperature" id="letter_size" type="number"
-                      class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-      
-                    <button x-on:click="data.generate.temperature += 0.10" type="button"
-                      class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                      &plus;
-                    </button>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
-          <span class="inline-flex -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
-            <button x-on:click="learn()"
-              class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">
-              Start
-            </button>
-
-            <button x-on:click="stop()"
-              class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">
-              Stop
-            </button>
-
-          </span>
+          <div class="h-32 rounded-lg bg-gray-200">
+            <canvas id="networkCanvas" class="w-72 h-32"></canvas>
+          </div>
         </div>
-        <div class=" rounded-lg bg-gray-200 lg:col-span-2">
-          <span class="material-symbols-rounded">
-            high_density
-            </span>
 
-          Epoch:
+
+      </div>
+    </div>
+
+    <div class="space-y-2">
+      <button @click="activeAccordion = activeAccordion === 1 ? false : 1"
+        :class="{ 'text-black': activeAccordion === 1 }" class="underline">
+        Learning
+      </button>
+
+      <div x-cloak x-collapse x-show="activeAccordion === 1">
+        <div>
+          <label for="learning_rate">Learning Rate</label>
+
+          <div class="flex items-center gap-1">
+            <button x-on:click="data.params.learning_rate += -0.01" type="button"
+              class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+              &minus;
+            </button>
+
+            <input x-bind:value="data.params.learning_rate" id="learning_rate" type="number"
+              class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+
+            <button x-on:click="data.params.learning_rate += 0.01" type="button"
+              class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+              &plus;
+            </button>
+          </div>
+        </div>
+        <div>
+          <label for="letter_size">Letter Size</label>
+
+          <div class="flex items-center gap-1">
+            <button x-on:click="data.params.letter_size--" type="button"
+              class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+              &minus;
+            </button>
+
+            <input x-bind:value="data.params.letter_size" id="letter_size" type="number"
+              class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+
+            <button x-on:click="data.params.letter_size++" type="button"
+              class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+              &plus;
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="space-y-2">
+      <button @click="activeAccordion = activeAccordion === 2 ? false : 2"
+        :class="{ 'text-black': activeAccordion === 2 }" class="underline">
+        Text Generation
+      </button>
+
+      <div x-cloak x-collapse x-show="activeAccordion === 2">
+        <div>
+          <div>
+            <label for="learning_rate">Amount of Characters Generated</label>
+
+            <div class="flex items-center gap-1">
+              <button x-on:click="data.generate.max_tokens--" type="button"
+                class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+                &minus;
+              </button>
+
+              <input x-bind:value="data.generate.max_tokens" id="learning_rate" type="number"
+                class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+
+              <button x-on:click="data.generate.max_tokens++" type="button"
+                class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+                &plus;
+              </button>
+            </div>
+          </div>
+          <div>
+            <label for="letter_size">Temperature</label>
+
+            <div class="flex items-center gap-1">
+              <button x-on:click="data.generate.temperature += -0.10" type="button"
+                class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+                &minus;
+              </button>
+
+              <input x-bind:value="data.generate.temperature" id="letter_size" type="number"
+                class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+
+              <button x-on:click="data.generate.temperature += 0.10" type="button"
+                class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+                &plus;
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a 
+  class="inline-block rounded-full border border-black p-3  bg-black text-white focus:outline-none focus: active:bg-black-500" x-data="{ isToggled: true }"
+  href="#"
+  x-on:click="isToggled = !isToggled; isToggled ? learn() : stop()"
+>
+  <span class="sr-only"> Download </span>
+
+  <span x-text="isToggled ? 'pause' : 'play_arrow'" class="material-symbols-rounded">
+    
+    </span>
+</a>
+
+   
+  </div>
+
+  </div>
+  <div class="h-32 rounded-lg bg-gray-200">
+    <div class="rounded-lg">
+      Epoch:
       <p x-text="data.stats.epoch"></p>
       Preplexity:
       <p x-text="data.stats.preplexity"></p>
-        </div>
-      </div>
-
     </div>
-    <div class=" rounded-lg bg-gray-400">
+  </div>
+  </div>
+
+  <!--Start of Text Generation-->
+  <div class="grid grid-cols-1 gap-4">
+    <div class=" rounded-lg">
       <span class="material-symbols-rounded">
         edit_note
-        </span>
-      
+      </span>
+
       <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
         <div class=" rounded-lg ">
           Iput Text
           <textarea x-data x-grow rows="4" x-model="data.inputText" x-text="data.inputText"
             placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit..."
-            class="w-full bg-gray-200 resize-none border-x-0 border-t-0 border-indigo-900 px-0 align-top sm:text-sm"></textarea>
+            class="w-full resize-none border-x-0 border-t-0 border-indigo-900 px-0 align-top sm:text-sm"></textarea>
         </div>
         <div class=" rounded-lg">
           <div>Tokenized:
             <div x-data="highlightTokens()">
               <template x-for="(char, index) in data.inputText" :key="index">
-                  <span x-text="char" x-bind:style="'background-color: ' + getTokenColor(char)"
-                  ></span>
+                <span x-text="char" x-bind:style="'background-color: ' + getTokenColor(char)"></span>
               </template>
-          </div>
+            </div>
 
-        
+
           </div>
         </div>
         <div class=" rounded-lg">
@@ -230,16 +230,10 @@
       </div>
     </div>
   </div>
+  <!--End of Text generation-->
 
 
-  
- 
-<script>
-   
-</script>
-
-
-
+  <script src="./scripts.js/canvas.js"></script>
 </body>
 
 </html>

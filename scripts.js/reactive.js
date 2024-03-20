@@ -7,7 +7,8 @@ let data = Alpine.reactive({
         preplexity:0,
     },
     params:{
-        hidden_sizes:[20,20],
+        neurons:10,
+        hidden_sizes:[10,10], 
         letter_size:5,
         learning_rate:0.01,
     },

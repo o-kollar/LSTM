@@ -386,3 +386,17 @@ function highlightTokens() {
     };
 } 
   
+
+function decrementHiddenSizes() {
+  for (let i = 0; i < data.params.hidden_sizes.length; i++) {
+      data.params.hidden_sizes[i]--;
+  }
+  drawNetwork();
+}
+
+function addHiddenSize() {
+  for (let i = 0; i < data.params.hidden_sizes.length; i++) {
+    data.params.hidden_sizes[i]++;
+}
+  drawNetwork();
+}
