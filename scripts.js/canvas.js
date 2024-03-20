@@ -60,3 +60,81 @@
 
     // Draw initial network
     drawNetwork();
+
+
+
+const options = {
+    chart: {
+      height: "100%",
+      maxWidth: "100%",
+      type: "line",
+      fontFamily: "Inter, sans-serif",
+      dropShadow: {
+        enabled: false,
+      },
+      toolbar: {
+        show: false,
+      },
+    },
+    tooltip: {
+      enabled: true,
+      x: {
+        show: false,
+      },
+    },
+    
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      width: 6,
+    },
+    grid: {
+      show: false,
+      strokeDashArray: 4,
+      padding: {
+        left: 2,
+        right: 2,
+        top: 0
+      },
+    },
+    series: [
+      {
+        name: "Preplexity",
+        data: [],
+        color: "#e35c9c",
+      },
+    ],
+    xaxis: {
+      categories: [],
+      labels: {
+        show: false,
+      },
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+    },
+    yaxis: {
+      show: false,
+    },
+  }
+  
+
+    const chart = new ApexCharts(document.getElementById("area-chart"), options);
+    chart.render();
+  
+    let preplexity = []
+
+   setInterval(function () {
+       preplexity.push(data.stats.preplexity)
+       console.log(preplexity)
+        chart.updateSeries([{
+          data: preplexity
+        }])
+      }, 100)
+      
+
+  

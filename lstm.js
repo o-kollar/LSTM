@@ -4,6 +4,8 @@
 var sample_softmax_temperature = data.generate.temperature; // how peaky model predictions should be
 var max_chars_gen = data.generate.max_tokens; // max length of generated sentences
 
+
+
 // various global var inits
 var epoch_size = -1;
 var input_size = -1;

@@ -5,11 +5,12 @@
 
   <title>Long-Short Term Memory model</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
   <script src="https://unpkg.com/alpinejs-textarea-grow@latest/dist/grow.min.js"></script>
   <script src="https://unpkg.com/@alpinejs/collapse@latest/dist/cdn.min.js"></script>
   <script src="//unpkg.com/alpinejs"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="./scripts.js/reactive.js"></script>
   <script src="./recurrent.js"></script>
   <script src="./lstm.js"></script>
@@ -18,7 +19,7 @@
 
 </head>
 
-<body class="bg-gradient-to-r from-rose-100 to-teal-100">
+<body class="bg-gradient-to-r from-slate-100 to-yellow-100">
 
   <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
     <div class="rounded-lg lg:col-span-2">
@@ -28,11 +29,14 @@
           <span class="pr-6 text-xl">Configuration</span>
           <span class="h-px flex-1 bg-black"></span>
       </div>
-      <div x-data="{ activeAccordion: 0 }" class="space-y-2 rounded-lg bg-zinc-200 p-8 shadow-lg m-6">
+      <div x-data="{ activeAccordion: 0 }" class="space-y-2">
         <div class="space-y-2">
           <button @click="activeAccordion = activeAccordion === 0 ? false : 0"
-            :class="{ 'text-black': activeAccordion === 0 }" class="underline">
+            :class="{ 'text-black': activeAccordion === 0 }" class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 gap-3">
             Network
+            <span x-text="activeAccordion === 0 ? 'expand_less' : 'expand_more' " class="material-symbols-rounded">
+          
+            </span>
           </button>
 
           <div x-cloak x-collapse x-show="activeAccordion === 0">
@@ -71,7 +75,7 @@
 
             </div>
           </div>
-          <div class="h-32 rounded-lg bg-gray-200">
+          <div class="h-32 rounded-lg">
             <canvas id="networkCanvas" class="w-72 h-32"></canvas>
           </div>
         </div>
@@ -82,8 +86,11 @@
 
     <div class="space-y-2">
       <button @click="activeAccordion = activeAccordion === 1 ? false : 1"
-        :class="{ 'text-black': activeAccordion === 1 }" class="underline">
+        :class="{ 'text-black': activeAccordion === 1 }" class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 gap-3">
         Learning
+        <span x-text="activeAccordion === 1 ? 'expand_less' : 'expand_more' " class="material-symbols-rounded">
+          
+          </span>
       </button>
 
       <div x-cloak x-collapse x-show="activeAccordion === 1">
@@ -127,8 +134,11 @@
     </div>
     <div class="space-y-2">
       <button @click="activeAccordion = activeAccordion === 2 ? false : 2"
-        :class="{ 'text-black': activeAccordion === 2 }" class="underline">
+        :class="{ 'text-black': activeAccordion === 2 }" class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-black border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 gap-3">
         Text Generation
+        <span x-text="activeAccordion === 2 ? 'expand_less' : 'expand_more' " class="material-symbols-rounded">
+          
+        </span>
       </button>
 
       <div x-cloak x-collapse x-show="activeAccordion === 2">
@@ -188,8 +198,14 @@
   </div>
 
   </div>
-  <div class="h-32 rounded-lg bg-gray-200">
+  <div class=" h-32 rounded-lg bg-gray-200">
+    <span class="flex items-center">
+      <span class="pr-6 text-xl">Performance</span>
+      <span class="h-px flex-1 bg-black"></span>
+    </span>
     <div class="rounded-lg">
+      <div id="area-chart"></div>
+    
       Epoch:
       <p x-text="data.stats.epoch"></p>
       Preplexity:
