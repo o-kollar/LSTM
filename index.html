@@ -19,159 +19,104 @@
 
 </head>
 
-<body class="bg-gradient-to-r from-slate-100 to-yellow-100">
+<body
+  class="bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-gray-200 via-zinc-300 to-cyan-50">
 
-  <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+  <div class="grid grid-cols-1 p-8 gap-4 lg:grid-cols-3 lg:gap-8">
     <div class="rounded-lg lg:col-span-2">
-
-      <div>
-        <span class="flex items-center mb-6">
-          <span class="pr-6 text-xl">Configuration</span>
-          <span class="h-px flex-1 bg-black"></span>
-      </div>
-      <div x-data="{ activeAccordion: 0 }" class="space-y-2">
-        <div class="space-y-2">
-          <button @click="activeAccordion = activeAccordion === 0 ? false : 0"
-            :class="{ 'text-black': activeAccordion === 0 }" class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 gap-3">
+      <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
+        <div class="rounded-lg  place-items-center  items-center">
+          <div class="">
             Network
-            <span x-text="activeAccordion === 0 ? 'expand_less' : 'expand_more' " class="material-symbols-rounded">
-          
-            </span>
-          </button>
-
-          <div x-cloak x-collapse x-show="activeAccordion === 0">
-            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
-              <div class="rounded-lg">
-                <div>
-                  <label for="letter_size"> Number of Network Layers
-
-                    <div class="flex items-center gap-1 ">
-                      <button x-on:click="data.params.hidden_sizes.pop(); drawNetwork(); " type="button"
-                        class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                        &minus;
-                      </button>
+            <canvas id="networkCanvas" class="w-96 h-52"></canvas>
+            <div>
 
 
-                      <button x-on:click="data.params.hidden_sizes.push(data.params.neurons);drawNetwork();"
-                        type="button" class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                        &plus;
-                      </button>
-                  </label>
-                </div>
-                <label for="letter_size">Number of Neurons
-                  <div class="flex items-center gap-1">
-                    <button x-on:click="data.params.neurons--;decrementHiddenSizes();" type="button"
-                      class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-                      &minus;
-                    </button>
+              <div class="flex mb-2 p-1 bg-gray-100  items-center rounded-full">
+                <button x-on:click="data.params.hidden_sizes.pop(); drawNetwork();" type="button"
+                  class="size-10 leading-10 text-2xl text-gray-600 transition hover:opacity-75">
+                  &minus;
+                </button>
 
+                <p class="text-gray-600 w-full text-center">Layers </p>
 
-                    <button x-on:click="data.params.neurons++;addHiddenSize();" type="button"
-                      class="size-10 leading-10  transition hover:opacity-75">
-                      &plus;
-                    </button>
-                </label>
+                <button x-on:click="data.params.hidden_sizes.push(data.params.neurons);drawNetwork();" type="button"
+                  class="size-10 text-2xl leading-10 text-gray-600 transition hover:opacity-75">
+                  &plus;
+                </button>
               </div>
+              <div class="flex p-1 bg-gray-100  items-center rounded-full ">
+                <button x-on:click="data.params.neurons--;decrementHiddenSizes();" type="button"
+                  class="size-10 text-2xl leading-10 text-gray-600 transition hover:opacity-75">
+                  &minus;
+                </button>
 
+                <p class="text-gray-600 w-full text-center">Neurons </p>
+
+                <button x-on:click="data.params.neurons++;addHiddenSize();" type="button"
+                  class="size-10 leading-10 text-2xl text-gray-600 transition hover:opacity-75">
+                  &plus;
+                </button>
+              </div>
             </div>
           </div>
-          <div class="h-32 rounded-lg">
-            <canvas id="networkCanvas" class="w-72 h-32"></canvas>
-          </div>
         </div>
-
-
-      </div>
-    </div>
-
-    <div class="space-y-2">
-      <button @click="activeAccordion = activeAccordion === 1 ? false : 1"
-        :class="{ 'text-black': activeAccordion === 1 }" class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 gap-3">
-        Learning
-        <span x-text="activeAccordion === 1 ? 'expand_less' : 'expand_more' " class="material-symbols-rounded">
+        <!--End of inner-->
+        <div class=" rounded-lg ">
+          <div class="grid grid-cols-2  place-items-center">
+            <div class=" bg-zinc-100 text-center flex rounded-full">
+            <span class="">Learning rate</span>
           
-          </span>
-      </button>
+            <div class="flex items-center w-32 mr-1 mt-1.5  rounded-full bg-gray-100 mb-2 p-1">
+              <button x-on:click="data.params.learning_rate += -0.01" type="button"
+                class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+                &minus;
+              </button>
+              <p class="text-gray-600 w-full text-center" x-text="data.params.learning_rate"></p>
+              <button x-on:click="data.params.learning_rate += 0.01" type="button"
+                class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+                &plus;
+              </button>
+            </div>
+            </div>
 
-      <div x-cloak x-collapse x-show="activeAccordion === 1">
-        <div>
-          <label for="learning_rate">Learning Rate</label>
+<div class="bg-zinc-400 rounded-full flex items center">
+            <span>Letter size</span>
+            <div class="flex items-center w-32 rounded-full bg-gray-100 mb-2 p-1">
+              <button x-on:click="data.params.letter_size--" type="button"
+                class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+                &minus;
+              </button>
+              <p class="text-gray-600 w-full text-center" x-text="data.params.letter_size"></p>
+              <button x-on:click="data.params.letter_size++" type="button"
+                class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
+                &plus;
+              </button>
+            </div>
+</div>
 
-          <div class="flex items-center gap-1">
-            <button x-on:click="data.params.learning_rate += -0.01" type="button"
-              class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-              &minus;
-            </button>
-
-            <input x-bind:value="data.params.learning_rate" id="learning_rate" type="number"
-              class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-
-            <button x-on:click="data.params.learning_rate += 0.01" type="button"
-              class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-              &plus;
-            </button>
-          </div>
-        </div>
-        <div>
-          <label for="letter_size">Letter Size</label>
-
-          <div class="flex items-center gap-1">
-            <button x-on:click="data.params.letter_size--" type="button"
-              class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-              &minus;
-            </button>
-
-            <input x-bind:value="data.params.letter_size" id="letter_size" type="number"
-              class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-
-            <button x-on:click="data.params.letter_size++" type="button"
-              class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
-              &plus;
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="space-y-2">
-      <button @click="activeAccordion = activeAccordion === 2 ? false : 2"
-        :class="{ 'text-black': activeAccordion === 2 }" class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-black border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 gap-3">
-        Text Generation
-        <span x-text="activeAccordion === 2 ? 'expand_less' : 'expand_more' " class="material-symbols-rounded">
-          
-        </span>
-      </button>
-
-      <div x-cloak x-collapse x-show="activeAccordion === 2">
-        <div>
-          <div>
-            <label for="learning_rate">Amount of Characters Generated</label>
-
-            <div class="flex items-center gap-1">
+            <p>Max Tokens</p>
+            <div class="flex w-32 items-center rounded-full bg-gray-100 mb-2 p-1">
               <button x-on:click="data.generate.max_tokens--" type="button"
                 class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
                 &minus;
               </button>
 
-              <input x-bind:value="data.generate.max_tokens" id="learning_rate" type="number"
-                class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+              <p class="text-gray-600 w-full text-center" x-text="data.generate.max_tokens"></p>
 
               <button x-on:click="data.generate.max_tokens++" type="button"
                 class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
                 &plus;
               </button>
             </div>
-          </div>
-          <div>
-            <label for="letter_size">Temperature</label>
-
-            <div class="flex items-center gap-1">
+            <p>temperature</p>
+            <div class="flex items-center w-32 rounded-full bg-gray-100 p-1">
               <button x-on:click="data.generate.temperature += -0.10" type="button"
                 class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
                 &minus;
               </button>
 
-              <input x-bind:value="data.generate.temperature" id="letter_size" type="number"
-                class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+              <p class="text-gray-600 w-full text-center" x-text="data.generate.temperature"></p>
 
               <button x-on:click="data.generate.temperature += 0.10" type="button"
                 class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
@@ -179,40 +124,55 @@
               </button>
             </div>
           </div>
+          <div>
+          </div>
         </div>
       </div>
     </div>
-    <a 
-  class="inline-block rounded-full border border-black p-3  bg-black text-white focus:outline-none focus: active:bg-black-500" x-data="{ isToggled: true }"
-  href="#"
-  x-on:click="isToggled = !isToggled; isToggled ? learn() : stop()"
->
-  <span class="sr-only"> Download </span>
+    <div class="h-32 rounded-lg bg-gray-200">
+      <article class="flex flex-col gap-4 rounded-lg border border-gray-100 bg-zinc-900 p-6">
+        <div class="inline-flex self-end rounded text-white">
+          <div id="area-chart"></div>
 
-  <span x-text="isToggled ? 'pause' : 'play_arrow'" class="material-symbols-rounded">
-    
-    </span>
-</a>
+          <span class="text-xs font-medium" x-text="`Epoch ${data.stats.epoch}`"></span>
+        </div>
 
-   
-  </div>
+        <div>
+          <strong class="block text-xl font-medium text-white">Perplexity</strong>
 
-  </div>
-  <div class=" h-32 rounded-lg bg-gray-200">
-    <span class="flex items-center">
-      <span class="pr-6 text-xl">Performance</span>
-      <span class="h-px flex-1 bg-black"></span>
-    </span>
-    <div class="rounded-lg">
-      <div id="area-chart"></div>
-    
-      Epoch:
-      <p x-text="data.stats.epoch"></p>
-      Preplexity:
-      <p x-text="data.stats.preplexity"></p>
+          <p>
+            <span class="text-4xl font-medium text-gray-100" x-text="data.stats.preplexity"></span>
+
+            <p class="text-xs text-gray-50"> Low is good</p>
+          </p>
+        </div>
+      </article>
+
+
+
     </div>
   </div>
+  <div class=" rounded-lg ">
+    Iput Text
+    <textarea x-data x-grow rows="4" x-model="data.inputText" x-text="data.inputText"
+      placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit..."
+      class="w-full resize-none border-x-0 border-t-0 border-indigo-900 px-0 align-top sm:text-sm"></textarea>
   </div>
+
+  <span class="flex items-center">
+    <button
+      class="inline-block rounded-full border border-black p-3 m-6  bg-black text-white focus:outline-none focus: active:bg-black-500"
+      x-data="{ isToggled: true }" href="#" x-on:click="isToggled = !isToggled; isToggled ? learn() : stop()">
+      <span class="sr-only"> Download </span>
+
+      <span x-text="isToggled ? 'pause' : 'play_arrow'" class="material-symbols-rounded">
+
+      </span>
+    </button>
+    <span class="h-px flex-1 bg-black"></span>
+  </span>
+
+
 
   <!--Start of Text Generation-->
   <div class="grid grid-cols-1 gap-4">
@@ -222,12 +182,7 @@
       </span>
 
       <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-        <div class=" rounded-lg ">
-          Iput Text
-          <textarea x-data x-grow rows="4" x-model="data.inputText" x-text="data.inputText"
-            placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit..."
-            class="w-full resize-none border-x-0 border-t-0 border-indigo-900 px-0 align-top sm:text-sm"></textarea>
-        </div>
+
         <div class=" rounded-lg">
           <div>Tokenized:
             <div x-data="highlightTokens()">
