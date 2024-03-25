@@ -28,7 +28,7 @@
                 <div class="rounded-lg lg:col-span-2">
                     
                     <span class="flex items-center">
-                        <strong class="block text-2xl font-medium p-6 ">Settings</strong>
+                        <strong class="block text-2xl font-medium pr-6 ">Settings</strong>
                         <span class="h-px flex-1 bg-black"></span>
                       </span>
                       <p class="text-xs text-gray-800">Play with the values to see how they influence performance</p>
@@ -38,8 +38,8 @@
                                 <div class="">
                                     <canvas id="networkCanvas" class="w-96 h-52"></canvas>
                                 </div>
-                                <div class="bg-white rounded-lg p-2">
-                                    <div class="flex mb-2 p-1 bg-gray-100  items-center rounded-full">
+                                <div class=" rounded-lg p-2">
+                                    <div class="flex mb-2 p-1 bg-white  items-center rounded-full">
                                         <button x-on:click="data.params.hidden_sizes.pop(); drawNetwork();"
                                             type="button"
                                             class="size-10 leading-10 text-2xl text-gray-600 transition hover:opacity-75">
@@ -56,7 +56,7 @@
                                         </button>
                                     </div>
 
-                                    <div class="flex p-1 bg-gray-100  items-center rounded-full ">
+                                    <div class="flex p-1 bg-white  items-center rounded-full ">
                                         <button x-on:click="data.params.neurons--;decrementHiddenSizes();" type="button"
                                             class="size-10 text-2xl leading-10 text-gray-600 transition hover:opacity-75">
                                             &minus;
@@ -81,9 +81,9 @@
                                     <div class="grid grid-cols-2 bg-white place-items-center w-fit rounded-full ">
                                         <div class="">
                                             <label class="">Learning rate</label>
-                                            <p class="text-xs text-gray-800">How fast the network learns</p>
+                                            
                                         </div>
-                                        <div class="">
+                                        <div class="place-self-end">
                                             <div
                                                 class="flex items-center w-32 mr-1 mt-1.5  rounded-full bg-gray-100 mb-1.5 p-1">
                                                 <button x-on:click="data.params.learning_rate += -0.01" type="button"
@@ -100,16 +100,18 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <p class="text-xs text-gray-800 m-0.5">
+                                        Determines the step size for weight updates during training
+                                    </p>
                                 </div>
                                 <div class="">
 
                                     <div class="grid grid-cols-2 bg-white place-items-center w-fit rounded-full ">
                                         <div class="">
                                             <label class="">Letter Size</label>
-                                            <p class="text-xs text-gray-800 ">On how big sequences is the network trained</p>
+                                            
                                         </div>
-                                        <div class="">
+                                        <div class="place-self-end">
                                             <div
                                                 class="flex items-center w-32 mr-1 mt-1.5  rounded-full bg-gray-100 mb-1.5 p-1">
                                                 <button x-on:click="data.params.letter_size--" type="button"
@@ -126,6 +128,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <p class="text-xs text-gray-800 m-0.5 ">Specifies the dimensionality of input vectors representing characters or tokens</p>
                                 </div>
 
               
@@ -137,9 +140,9 @@
                                     <div class="grid grid-cols-2 flex bg-white place-items-center w-fit rounded-full ">
                                         <div class="">
                                             <label class="">Max Tokens</label>
-                                            <p class="text-xs text-gray-800"> How many Tokes are generated</p>
+                                            
                                         </div>
-                                        <div class="">
+                                        <div class="place-self-end">
                                             <div
                                                 class="flex items-center w-32 mr-1 mt-1.5  rounded-full bg-gray-100 mb-1.5 p-1">
                                                 <button x-on:click="data.generate.max_tokens--" type="button"
@@ -156,33 +159,34 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <p class="text-xs text-gray-800 m-0.5 ">Sets the maximum number of tokens generated</p>
                                 </div>
-                                <div class="text-center">
+                                <div class="">
 
                                     <div class="grid grid-cols-2 bg-white place-items-center min-h-fit w-fit rounded-full ">
                                         <div class="">
                                             <label class="block text-m font-medium">Temperature</label>
                                             
+                                            
                                         </div>
-                                        <div class="">
+                                        <div class="place-self-end">
                                             <div
                                                 class="flex items-center w-32 mr-1 mt-1.5  rounded-full bg-gray-100 mb-1.5 p-1">
-                                                <button x-on:click="data.generate.temperature += -0.10" type="button"
+                                                <button x-on:click="data.generate.temperature += -0.1" type="button"
                                                     class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
                                                     &minus;
                                                 </button>
                                                 <p class="text-gray-600  w-full text-center"
                                                     x-text="data.generate.temperature">
                                                 </p>
-                                                <button x-on:click="data.generate.temperature += 0.10" type="button"
+                                                <button x-on:click="data.generate.temperature += 0.1" type="button"
                                                     class="size-10 leading-10 text-gray-600 transition hover:opacity-75">
                                                     &plus;
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="text-xs text-gray-800"> How diverse the Generated data is</p>
+                                    <p class="text-xs text-gray-800 m-0.5">Controls the randomness of generated text during sampling</p>
                                 </div>
 
               
@@ -225,7 +229,8 @@
         </div>
 
         <div class=" rounded-lg ">
-            Iput Text
+            <strong class="block text-xl font-medium ">Input Text</strong>
+            <p class="text-xs text-gray-800 mb-2">Feel free to input Your own text</p>
             <textarea x-data x-grow rows="4" x-model="data.inputText" x-text="data.inputText"
               placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit..."
               class="w-full resize-none border-x-0 border-t-0 border-indigo-900 px-0 align-top sm:text-sm"></textarea>
