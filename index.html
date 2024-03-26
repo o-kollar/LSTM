@@ -75,17 +75,19 @@
                             </div>
 
                         </div>
-                        <div class="rounded-lg   content-between  p-2">
-                            <div class="grid   w-full grid-cols-1 lg:grid-cols-2 gap-4 mb-4 ">
+                        <div class="rounded-lg    content-between  p-2">
+                            <div class="grid   w-full grid-cols-1  gap-4 mb-4 ">
                                 <div class="">
-                                    <div class="grid grid-cols-2 bg-white place-items-center w-fit rounded-full ">
+                                    <div class="grid grid-cols-2  h-fit  place-items-center w-fit rounded-full ">
                                         <div class="">
                                             <label class="">Learning rate</label>
-                                            
+                                            <p class="text-xs text-gray-800 m-0.5">
+                                                Determines the step size for weight updates during training
+                                            </p>
                                         </div>
                                         <div class="place-self-end">
                                             <div
-                                                class="flex items-center w-32 mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
+                                                class="flex items-center w-32 h-10 mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
                                                 <button x-on:click="data.params.learning_rate += -0.01" type="button"
                                                     class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
                                                     &minus;
@@ -100,20 +102,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="text-xs text-gray-800 m-0.5">
-                                        Determines the step size for weight updates during training
-                                    </p>
+    
                                 </div>
-                                <div class="w-full">
+                                <div class="">
 
-                                    <div class="grid  grid-cols-2 bg-white place-items-center w-fit rounded-full ">
+                                    <div class="grid  grid-cols-2  place-items-center w-fit rounded-full ">
                                         <div class="">
                                             <label class="">Letter Size</label>
-                                            
+                                            <p class="text-xs text-gray-800 m-0.5 ">Specifies the dimensionality of input vectors representing characters or tokens</p>
                                         </div>
                                         <div class="place-self-end">
                                             <div
-                                                class="flex items-center w-32 mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
+                                                class="flex items-center h-10  mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
                                                 <button x-on:click="data.params.letter_size--" type="button"
                                                     class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
                                                     &minus;
@@ -128,23 +128,25 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="text-xs text-gray-800 m-0.5 ">Specifies the dimensionality of input vectors representing characters or tokens</p>
+                                   
                                 </div>
 
               
                             </div>
 
                             
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 ">
+                            <div class="grid grid-cols-1  gap-4 ">
                                 <div class="w-full">
-                                    <div class="grid grid-cols-2 flex bg-white place-items-center w-fit rounded-full ">
+                                    <div class="grid grid-cols-2 flex   place-items-center  rounded-full ">
                                         <div class="w-fit">
                                             <label class="text-ellipsis">Max Tokens</label>
+                                            <p class="text-xs text-gray-800 m-0.5 ">Sets the maximum number of tokens generated</p>
+                                        
                                             
                                         </div>
                                         <div class="place-self-end">
                                             <div
-                                                class="flex items-center w-32 mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
+                                                class="flex items-center h-10 mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
                                                 <button x-on:click="data.generate.max_tokens--" type="button"
                                                     class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
                                                     &minus;
@@ -159,19 +161,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="text-xs text-gray-800 m-0.5 ">Sets the maximum number of tokens generated</p>
+                                  
                                 </div>
                                 <div class="">
 
-                                    <div class="grid grid-cols-2 bg-white place-items-center min-h-fit w-fit rounded-full ">
+                                    <div class="grid grid-cols-2  place-items-center min-h-fit w-fit rounded-full ">
                                         <div class="">
                                             <label class="block text-m font-medium">Temperature</label>
-                                            
+                                            <p class="text-xs text-gray-800 m-0.5">Controls the randomness of generated text during sampling</p>
                                             
                                         </div>
                                         <div class="place-self-end">
                                             <div
-                                                class="flex items-center w-32 mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
+                                                class="flex items-center h-10 mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
                                                 <button x-on:click="data.generate.temperature += -0.1" type="button"
                                                     class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
                                                     &minus;
@@ -186,7 +188,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="text-xs text-gray-800 m-0.5">Controls the randomness of generated text during sampling</p>
+                                   
                                 </div>
 
               
