@@ -14,9 +14,9 @@
     function drawNeuron(x, y) {
         ctx.beginPath();
         ctx.arc(x, y, 5, 0, Math.PI * 2);
-        ctx.fillStyle = '#eb5f5b';
+        ctx.fillStyle = '#da685f';
         ctx.fill();
-        ctx.strokeStyle = '#eb5f5b';
+        ctx.strokeStyle = "#da685f";
         ctx.lineWidth = 1;
         ctx.stroke();
         ctx.closePath();
@@ -102,7 +102,7 @@ const options = {
       {
         name: "Preplexity",
         data: [],
-        color: "#e35c9c",
+        color: "#da685f",
       },
     ],
     xaxis: {
