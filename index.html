@@ -26,12 +26,12 @@
         <div class="">
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
                 <div class="rounded-lg lg:col-span-2">
-                    
+
                     <span class="flex items-center">
                         <strong class="block text-2xl font-medium pr-6 ">Settings</strong>
                         <span class="h-px flex-1 bg-black"></span>
-                      </span>
-                      <p class="text-xs text-gray-800">Play with the values to see how they influence performance</p>
+                    </span>
+                    <p class="text-xs text-gray-800">Play with the values to see how they influence performance</p>
                     <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
                         <div class="rounded-lg p-4 grid place-items-center items-center">
                             <div class="grid grid-cols-1 gap-4">
@@ -71,159 +71,130 @@
                                     </div>
 
                                 </div>
-                                
+
                             </div>
 
                         </div>
-                        <div class="rounded-lg    content-between  p-2">
-                            <div class="grid   w-full grid-cols-1  gap-4 mb-4 ">
-                                <div class="">
-                                    <div class="grid grid-cols-2  h-fit  place-items-center w-fit rounded-full ">
-                                        <div class="">
-                                            <label class="">Learning rate</label>
-                                            <p class="text-xs text-gray-800 m-0.5">
-                                                Determines the step size for weight updates during training
-                                            </p>
-                                        </div>
-                                        <div class="place-self-end">
-                                            <div
-                                                class="flex items-center w-32 h-10 mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
-                                                <button x-on:click="data.params.learning_rate += -0.01" type="button"
-                                                    class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
-                                                    &minus;
-                                                </button>
-                                                <p class="text-gray-300 w-full text-center"
-                                                    x-text="data.params.learning_rate">
-                                                </p>
-                                                <button x-on:click="data.params.learning_rate += 0.01" type="button"
-                                                    class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
-                                                    &plus;
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                </div>
-                                <div class="">
+                        <div class="rounded-lg  grid  place-items-center  p-2">
 
-                                    <div class="grid  grid-cols-2  place-items-center w-fit rounded-full ">
-                                        <div class="">
-                                            <label class="">Letter Size</label>
-                                            <p class="text-xs text-gray-800 m-0.5 ">Specifies the dimensionality of input vectors representing characters or tokens</p>
-                                        </div>
-                                        <div class="place-self-end">
-                                            <div
-                                                class="flex items-center h-10  mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
-                                                <button x-on:click="data.params.letter_size--" type="button"
-                                                    class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
-                                                    &minus;
-                                                </button>
-                                                <p class="text-gray-300 w-full text-center"
-                                                    x-text="data.params.letter_size">
-                                                </p>
-                                                <button x-on:click="data.params.letter_size++" type="button"
-                                                    class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
-                                                    &plus;
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                   
+                            <div class="grid grid-cols-2 place-items-center w-fit mb-2 rounded-full  ">
+                                <div class="w-52">
+                                    <label class="">Learning rate</label>
+                                    <p class="text-xs text-gray-800 m-0.5">
+                                        Determines the step size for weight updates during training
+                                    </p>
                                 </div>
-
-              
+                                <div class="place-self-end">
+                                    <div
+                                        class="flex items-center  h-10 mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
+                                        <button x-on:click="data.params.learning_rate += -0.01" type="button"
+                                            class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
+                                            &minus;
+                                        </button>
+                                        <p class="text-gray-300 w-full text-center" x-text="data.params.learning_rate">
+                                        </p>
+                                        <button x-on:click="data.params.learning_rate += 0.01" type="button"
+                                            class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
+                                            &plus;
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
 
-                            
-                            <div class="grid grid-cols-1  gap-4 ">
-                                <div class="w-full">
-                                    <div class="grid grid-cols-2 flex   place-items-center  rounded-full ">
-                                        <div class="w-fit">
-                                            <label class="text-ellipsis">Max Tokens</label>
-                                            <p class="text-xs text-gray-800 m-0.5 ">Sets the maximum number of tokens generated</p>
-                                        
-                                            
-                                        </div>
-                                        <div class="place-self-end">
-                                            <div
-                                                class="flex items-center h-10 mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
-                                                <button x-on:click="data.generate.max_tokens--" type="button"
-                                                    class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
-                                                    &minus;
-                                                </button>
-                                                <p class="text-gray-300 w-full text-center"
-                                                    x-text="data.generate.max_tokens">
-                                                </p>
-                                                <button x-on:click="data.generate.max_tokens++" type="button"
-                                                    class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
-                                                    &plus;
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                  
+                            <div class="grid grid-cols-2 place-items-center w-fit mb-2 rounded-full ">
+                                <div class="w-52">
+                                    <label class="">Letter Size</label>
+                                    <p class="text-xs text-gray-800 m-0.5 ">Specifies the dimensionality of input
+                                        vectors representing characters or tokens</p>
                                 </div>
-                                <div class="">
-
-                                    <div class="grid grid-cols-2  place-items-center min-h-fit w-fit rounded-full ">
-                                        <div class="">
-                                            <label class="block text-m font-medium">Temperature</label>
-                                            <p class="text-xs text-gray-800 m-0.5">Controls the randomness of generated text during sampling</p>
-                                            
-                                        </div>
-                                        <div class="place-self-end">
-                                            <div
-                                                class="flex items-center h-10 mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
-                                                <button x-on:click="data.generate.temperature += -0.1" type="button"
-                                                    class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
-                                                    &minus;
-                                                </button>
-                                                <p class="text-gray-300  w-full text-center"
-                                                    x-text="data.generate.temperature">
-                                                </p>
-                                                <button x-on:click="data.generate.temperature += 0.1" type="button"
-                                                    class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
-                                                    &plus;
-                                                </button>
-                                            </div>
-                                        </div>
+                                <div class="place-self-end">
+                                    <div
+                                        class="flex items-center h-10  mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
+                                        <button x-on:click="data.params.letter_size--" type="button"
+                                            class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
+                                            &minus;
+                                        </button>
+                                        <p class="text-gray-300 w-full text-center" x-text="data.params.letter_size">
+                                        </p>
+                                        <button x-on:click="data.params.letter_size++" type="button"
+                                            class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
+                                            &plus;
+                                        </button>
                                     </div>
-                                   
                                 </div>
+                            </div>
+                            <div class="grid grid-cols-2 place-items-center w-fit mb-2 rounded-full ">
+                                <div class="w-52">
+                                    <label class="text-ellipsis">Max Tokens</label>
+                                    <p class="text-xs text-gray-800 m-0.5 ">Sets the maximum number of tokens generated
+                                    </p>
 
-              
+
+                                </div>
+                                <div class="place-self-end">
+                                    <div
+                                        class="flex items-center h-10 mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
+                                        <button x-on:click="data.generate.max_tokens--" type="button"
+                                            class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
+                                            &minus;
+                                        </button>
+                                        <p class="text-gray-300 w-full text-center" x-text="data.generate.max_tokens">
+                                        </p>
+                                        <button x-on:click="data.generate.max_tokens++" type="button"
+                                            class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
+                                            &plus;
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
 
+                            <div class="grid grid-cols-2  place-items-center  w-fit mb-2 rounded-full ">
+                                <div class="w-52">
+                                    <label class="block text-m font-medium">Temperature</label>
+                                    <p class="text-xs text-gray-800 m-0.5">Controls the randomness of generated text
+                                        during sampling</p>
 
-                            <div>
-
+                                </div>
+                                <div class="place-self-end">
+                                    <div
+                                        class="flex items-center h-10 mr-1 mt-1.5  rounded-full bg-zinc-800 mb-1.5 p-1">
+                                        <button x-on:click="data.generate.temperature += -0.1" type="button"
+                                            class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
+                                            &minus;
+                                        </button>
+                                        <p class="text-gray-300  w-full text-center" x-text="data.generate.temperature">
+                                        </p>
+                                        <button x-on:click="data.generate.temperature += 0.1" type="button"
+                                            class="size-10 leading-10 text-gray-300 transition hover:opacity-75">
+                                            &plus;
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="rounded-lg">
-                    
+
 
                     <article class="flex flex-col gap-4 rounded-lg  bg-zinc-800 p-6">
                         <div class="inline-flex self-end rounded ">
-                          <div class="h-64" id="area-chart"></div>
-                
-                          <span class="text-xs font-medium text-gray-200" x-text="`Epoch ${data.stats.epoch}`"></span>
+                            <div class="h-64" id="area-chart"></div>
+
+                            <span class="text-xs font-medium text-gray-200" x-text="`Epoch ${data.stats.epoch}`"></span>
                         </div>
-                
+
                         <div>
-                          <strong class="block text-xl font-medium text-gray-300">Perplexity</strong>
-                
-                          <p>
-                            <span class="text-4xl font-medium text-gray-300" x-text="data.stats.preplexity"></span>
-                
+                            <strong class="block text-xl font-medium text-gray-300">Perplexity</strong>
+
+                            <p>
+                                <span class="text-4xl font-medium text-gray-300" x-text="data.stats.preplexity"></span>
+
                             <p class="text-xs text-gray-300"> Low is good</p>
-                          </p>
+                            </p>
                         </div>
-                      </article>
+                    </article>
 
                 </div>
             </div>
@@ -233,24 +204,24 @@
         <div class=" rounded-lg ">
             <strong class="block text-xl font-medium ">Input Text</strong>
             <p class="text-xs text-gray-800 mb-2">Feel free to input Your own text</p>
-            <textarea x-data x-grow rows="4" x-model="data.inputText" x-text="data.inputText"
-              placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit..."
-              class="w-full resize-none border-x-0 border-t-0 border-indigo-900 px-0 align-top sm:text-sm"></textarea>
-          </div>
+            <textarea x-bind:class="`bg-gray-100 `" x-data x-grow rows="4" x-model="data.inputText"
+                x-text="data.inputText" placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit..."
+                class="w-full resize-none border-x-0 border-t-0 border-indigo-900 px-0 align-top sm:text-sm"></textarea>
+        </div>
 
 
-          <span class="flex items-center">
+        <span class="flex items-center">
             <button
-              class="inline-block rounded-full border border-black p-3 m-6  bg-black text-white focus:outline-none focus: active:bg-black-500"
-              x-data="{ isToggled: true }" href="#" x-on:click="isToggled = !isToggled; isToggled ? learn() : stop()">
-              <span class="sr-only"> Download </span>
-        
-              <span x-text="isToggled ? 'pause' : 'play_arrow'" class="material-symbols-rounded">
-        
-              </span>
+                class="inline-block rounded-full border border-black p-3 m-6  bg-black text-white focus:outline-none focus: active:bg-black-500"
+                x-data="{ isToggled: true }" href="#" x-on:click="isToggled = !isToggled; isToggled ? learn() : stop()">
+                <span class="sr-only"> </span>
+
+                <span x-text="isToggled ? 'pause' : 'play_arrow'" class="material-symbols-rounded">
+
+                </span>
             </button>
             <span class="h-px flex-1 bg-black"></span>
-          </span>
+        </span>
 
         <div class=" rounded-lg ">
             <strong class="block text-xl font-medium ">Tokenization</strong>
@@ -259,17 +230,18 @@
                 <div class=" rounded-lg ">
                     <div x-data="highlightTokens()">
                         <template x-for="(char, index) in data.inputText" :key="index">
-                          <span x-text="char" x-bind:style="'background-color: ' + getTokenColor(char)" class="rounded-lg m-0.5 p-0.5 text-m font-medium "></span>
+                            <span x-text="char" x-bind:style="'background-color: ' + getTokenColor(char)"
+                                class="rounded-lg m-0.5 p-0.5 text-m font-medium "></span>
                         </template>
-                      </div>
+                    </div>
                 </div>
                 <div class="text-xl font-medium  rounded-lg">
                     <div class=" h-64" x-text="data.prediction"></div>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
-
+<div>Footer</div>
 
 
     <script src="./widgets/loader.js"></script>
