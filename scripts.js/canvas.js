@@ -14,7 +14,7 @@
     function drawNeuron(x, y) {
         ctx.beginPath();
         ctx.arc(x, y, 5, 0, Math.PI * 2);
-        ctx.fillStyle = '#ec612a';
+        ctx.fillStyle = '#ea3a23';
         ctx.fill();
         ctx.strokeStyle = "#da685f";
         ctx.lineWidth = 1;
@@ -130,7 +130,6 @@ const options = {
 
    setInterval(function () {
        preplexity.push(data.stats.preplexity)
-       console.log(preplexity)
         chart.updateSeries([{
           data: preplexity
         }])

@@ -20,22 +20,23 @@
 
 <body
     class="bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-gray-100 via-zinc-100 to-amber-100">
-    <strong class="block text-6xl font-medium p-6 text-orange-400">LSTM</strong>
-
+    <div class="p-2">
+        <strong class="block text-6xl font-medium p-6">LSTM</strong>
+        <span class="flex items-center">
+            <strong class="block text-2xl font-medium pr-6 ">Settings</strong>
+            <span class="h-px flex-1 bg-black"></span>
+        </span>
+        <p class="text-xs text-gray-800">Play with the values to see how they influence performance</p>
+    </div>
+    
     <div class="grid p-4 grid-cols-1 gap-4">
         <div class="">
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
                 <div class="rounded-lg lg:col-span-2">
-
-                    <span class="flex items-center">
-                        <strong class="block text-2xl font-medium pr-6 ">Settings</strong>
-                        <span class="h-px flex-1 bg-black"></span>
-                    </span>
-                    <p class="text-xs text-gray-800">Play with the values to see how they influence performance</p>
                     <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
                         <div class="rounded-lg p-4 grid place-items-center items-center">
                             <div class="grid grid-cols-1 gap-4">
-                                <div class="">
+                                <div class=" grid items-center">
                                     <canvas id="networkCanvas" class="w-96 h-52"></canvas>
                                 </div>
                                 <div class=" rounded-lg p-2">
@@ -178,9 +179,9 @@
                 <div class="rounded-lg">
 
 
-                    <article class="flex flex-col gap-4 rounded-lg  bg-zinc-800 p-6">
-                        <div class="inline-flex self-end rounded ">
-                            <div class="h-64" id="area-chart"></div>
+                    <article class="flex m-10 flex-col gap-4 rounded-lg  bg-zinc-800 p-6">
+                        <div class=" inline-flex self-end rounded ">
+                            <div class="h-32" id="area-chart"></div>
 
                             <span class="text-xs font-medium text-gray-200" x-text="`Epoch ${data.stats.epoch}`"></span>
                         </div>
@@ -189,7 +190,7 @@
                             <strong class="block text-xl font-medium text-gray-300">Perplexity</strong>
 
                             <p>
-                                <span class="text-4xl font-medium text-gray-300" x-text="data.stats.preplexity"></span>
+                                <span class="text-4xl font-medium text-orange-600" x-text="data.stats.preplexity"></span>
 
                             <p class="text-xs text-gray-300"> Low is good</p>
                             </p>
@@ -223,12 +224,23 @@
             <span class="h-px flex-1 bg-black"></span>
         </span>
 
-        <div class=" rounded-lg ">
+        <div x-data="highlightTokens()"  class=" rounded-lg ">
             <strong class="block text-xl font-medium ">Tokenization</strong>
-            <p class="text-xs text-gray-800 mb-2">The model has a simple character based tokenizer</p>
+           <div class="mb-4">
+        
+        <p class="text-xs text-gray-800">The model has a simple character based tokenizer</p>
+        <span x-text="`the input text contains ${data.tokens.length} characers`" class="text-xs text-gray-800 mb-2"></span>
+        <template x-for="tokens in data.tokens">
+            <span x-text="tokens" x-bind:style="'background-color: ' + getTokenColor(tokens)" class="rounded-lg m-0.5  p-0.5 text-xs text-gray-800 mb-2"></span>
+        </template>
+           </div>
+
+           
+            
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
-                <div class=" rounded-lg ">
-                    <div x-data="highlightTokens()">
+                <div class=" m-10 rounded-lg bg-zinc-800 font-medium  rounded-lg text-gray-300 p-4 ">
+                    <p class="mb-2"> Tokenized Input Text</p>
+                    <div>
                         <template x-for="(char, index) in data.inputText" :key="index">
                             <span x-text="char" x-bind:style="'background-color: ' + getTokenColor(char)"
                                 class="rounded-lg m-0.5 p-0.5 text-m font-medium "></span>
@@ -236,12 +248,19 @@
                     </div>
                 </div>
                 <div class="text-xl font-medium  rounded-lg">
-                    <div class=" h-64" x-text="data.prediction"></div>
+                    Text Generation
+                    <div class="p-4 h-96" x-text="data.prediction"></div>
                 </div>
             </div>
         </div>
     </div>
-<div>Footer</div>
+<div>
+    <span class="flex items-center">
+        <span class="h-px flex-1 bg-black"></span>
+        <span class="shrink-0 px-6">Footer</span>
+        <span class="h-px flex-1 bg-black"></span>
+      </span>
+</div>
 
 
     <script src="./widgets/loader.js"></script>

@@ -387,6 +387,8 @@ function highlightTokens() {
         },
     };
 } 
+
+
   
 
 function decrementHiddenSizes() {
