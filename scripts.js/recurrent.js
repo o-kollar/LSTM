@@ -188,6 +188,28 @@ var R = {}; // the Recurrent library
       }
       return out;
     },
+    swish: function(m) {
+      var out = new Mat(m.n, m.d);
+      var n = m.w.length;
+      var beta = 1.0; // You can adjust this parameter as needed
+      
+      for (var i = 0; i < n; i++) { 
+        out.w[i] = m.w[i] * (1 / (1 + Math.exp(-beta * m.w[i]))); // Swish
+      }
+      
+      if (this.needs_backprop) {
+        var backward = function() {
+          for (var i = 0; i < n; i++) {
+            var mwi = m.w[i];
+            var swish_grad = 1 / (1 + Math.exp(-beta * mwi)) + mwi * beta * Math.exp(-beta * mwi) / Math.pow((1 + Math.exp(-beta * mwi)), 2);
+            m.dw[i] += swish_grad * out.dw[i];
+          }
+        }
+        this.backprop.push(backward);
+      }
+      
+      return out;
+    },    
     mul: function(m1, m2) {
       // multiply matrices m1 * m2
       assert(m1.d === m2.n, 'matmul dimensions misaligned');
